@@ -8,7 +8,6 @@ public class LoginMain {
         }
         Helper helper = new Helper(dao);
         helper.showStartPage();
-
         dao.disconnect();
     }
 }

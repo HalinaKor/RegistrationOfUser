@@ -73,11 +73,10 @@ public class DaoImplement implements Dao {
             preparedStatement.setString(3, password);
             preparedStatement.setString(4, "user");
 
-            // если писать int i = preparedStatement.executeUpdate(), то i будет показывать количество  элементов над которыми были произведены операции
             preparedStatement.executeUpdate();
             System.out.println("User added successfully");
         } catch (SQLException e) {
-            e.printStackTrace();
+            System.out.println("Производится проверка на сходство");
         }
     }
 

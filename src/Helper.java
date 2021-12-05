@@ -4,6 +4,8 @@ import java.util.Scanner;
 public class Helper {
     private Dao dao;
     private Scanner scanner;
+    private int count = 0;
+
 
     public Helper(Dao dao) {
         this.dao = dao;
@@ -44,8 +46,8 @@ public class Helper {
                 }
             }
         } else {
-            System.out.println("Неправильный Логин или Пароль. Повторите попытку");
-            showSignInPage();
+            System.out.println("Вам нужно зарегаться");
+            showStartPage();
         }
     }
 
@@ -56,6 +58,24 @@ public class Helper {
         String login = scanner.nextLine();
         System.out.println("Введите ваш пароль:");
         String password = scanner.nextLine();
-        dao.register(name,login,password);
+        loginCheck(dao, login);
+            if (count>0){
+                System.out.println("Пользователь уже существует");
+            } else {
+                dao.register(name, login, password);
+            }
+        showStartPage();
+        }
+
+    public int loginCheck (Dao dao, String login) {
+        List<User> userList = dao.select();
+        for (User user1:userList) {
+            String login1 = user1.getLogin();
+            if (login.equals(login1)) {
+                count = count + 1;
+            }
+        }
+        return count;
     }
 }
+

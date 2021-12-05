@@ -1,3 +1,5 @@
+import java.util.Objects;
+
 public class User {
     private int id;
     private String login;
@@ -44,6 +46,7 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
 
     @Override
     public String toString() {
